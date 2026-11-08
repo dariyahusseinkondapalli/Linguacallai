@@ -1,3 +1,9 @@
+# Implementation progress — 2026-11-08
+
+Repository audited: only this roadmap existed. Foundation and provider-backed text
+implementation added on `feat/mobile-foundation`. See `docs/progress.md`.
+Physical-device milestone exits remain pending; no voice/call capability is claimed.
+
 # LinguaCall AI — Complete Step-by-Step Product & Engineering Plan
 
 **Status:** Planning | **Version:** 1.0 | **Date:** 2026-11-06
@@ -47,8 +53,8 @@ Build a premium, accessible, Android-first multilingual communication product fo
 
 ## Milestone 1 — Repository foundation and premium app UI
 
-- [ ] Monorepo: `apps/mobile`, `apps/api`, `packages/shared`, `docs`, `tests`.
-- [ ] React Native/Expo TypeScript development-build setup and Node/Express health endpoint.
+- [x] Monorepo: `apps/mobile`, `apps/api`, `packages/shared`, `docs`, `tests`.
+- [x] React Native/Expo TypeScript development-build setup and Node/Express health endpoint.
 - [ ] Theme tokens: midnight navy, electric blue, soft white, accessible contrast, large touch targets and light/dark modes.
 - [ ] Screen navigation: Home, Text Translate, Live Voice, Conversation, AI Calling, Language Picker, Settings.
 - [ ] Large primary buttons for Translate Now / Start AI Call, language swap, and audio status.

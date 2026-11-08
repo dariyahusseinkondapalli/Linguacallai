@@ -1,0 +1,13 @@
+{
+  "expo": {
+    "name": "LinguaCall AI",
+    "slug": "linguacall-ai",
+    "scheme": "linguacall",
+    "version": "0.1.0",
+    "orientation": "default",
+    "userInterfaceStyle": "light",
+    "android": { "package": "com.linguacall.ai" },
+    "plugins": ["expo-secure-store"],
+    "web": { "bundler": "metro" }
+  }
+}
