@@ -34,3 +34,19 @@ Next: configure and review an actual regional-language provider; validate the Ex
 app on a physical phone; implement Android capture/route/effect management before
 ASR/TTS/VAD, pairing, and calling. Production account identity and durable metering
 are required before exposing any multi-user service. No paid services or deployment.
+
+# Native beta iteration — 2026-11-09
+
+User requested the remaining implementation and an Android app, with provider setup
+left for later. Added native speech recognition/TTS, foreground listening, automatic
+speech endpointing and supported language switching, Android route/focus management,
+NS/AEC attachment to visible app-owned capture sessions, local beta account lifecycle,
+QR/invite pairing, authorized WebSocket signaling, WebRTC audio/mute and translated
+voice turns with microphone handoff. No provider/backend/TURN service was purchased
+or deployed. Added a manual Android build workflow and beta setup guide.
+
+Validation so far: strict TypeScript and lint pass; all 15 tests pass; API bundle
+builds; web export and Chromium phone/tablet interaction smoke pass. Account/session
+tests use local sockets and SQLite; no media/device testing is implied. Android SDK,
+NDK, CMake and JDK 17 were installed locally for APK build validation. Final APK build
+result is recorded separately below when available.

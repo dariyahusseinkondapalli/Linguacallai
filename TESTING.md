@@ -33,3 +33,10 @@ npm run test:browser
 
 The smoke test exercises actual UI components in Chromium. Native React Native
 component behavior and permission tests remain pending until audio is implemented.
+
+Native beta adds five account/session integration tests: enrollment gating, login
+failure/deletion revocation, session identity and language validation, two-user
+membership, authenticated WebSocket caption delivery/end cleanup, and forged-token
+rejection. Total suite: 15 tests. These use local sockets and in-memory SQLite;
+provider tests still use fixtures. WebRTC media, Bluetooth and audio effects require
+physical devices and are not implied by successful signaling tests.

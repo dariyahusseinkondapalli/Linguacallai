@@ -15,3 +15,10 @@ Argos/LibreTranslate avoids proprietary coupling but model coverage may exclude
 Telugu and Marathi. IndicTrans2 is a future evaluation candidate, not included:
 model licensing, memory and remote hosting need review. Cloud ASR/TTS providers
 remain unselected until regional language quality and budget are validated.
+
+## Native beta additions
+expo-speech-recognition 3.1 (MIT) uses the installed Android speech service; it may
+send speech to that service. expo-speech uses installed system TTS voices. Neither
+bundles a heavy model. react-native-webrtc (MIT, bundled WebRTC BSD components)
+provides internet audio; ws (MIT) provides signaling; react-native-qrcode-svg and
+react-native-svg render invites. No provider or TURN account is purchased.

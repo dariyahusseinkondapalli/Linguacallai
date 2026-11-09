@@ -1,3 +1,10 @@
+# Native beta iteration — 2026-11-08
+
+OS speech recognition/TTS, Android routing and capture-session NS/AEC, beta accounts,
+paired WebSocket sessions, WebRTC original audio and translated voice turns are now
+implemented. Device acceptance gates below remain unchecked until tested on real
+phones. Provider configuration is deferred at the user’s request. See docs/BETA_GUIDE.md.
+
 # Implementation progress — 2026-11-08
 
 Repository audited: only this roadmap existed. Foundation and provider-backed text

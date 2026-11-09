@@ -18,7 +18,7 @@ with only `plan.md`. See `docs/AUDIT.md` and `KNOWN_LIMITATIONS.md`.
 
 Translation requires a configured provider whose installed models support the pair.
 No language accuracy or physical-device compatibility has been validated yet.
-Nearby listening, Bluetooth/ENC, pairing and calls are explicitly unavailable.
+Native beta code now includes nearby listening, Android audio routing/effects, account registration, paired translation sessions and WebRTC voice calls with translated turns. These require physical-device validation. See `docs/BETA_GUIDE.md`.
 
 ## Run locally
 
@@ -63,8 +63,7 @@ gradlew.bat assembleDebug
 ```
 
 The development APK appears under `android/app/build/outputs/apk/debug/` and uses
-Metro for the development JS bundle. A distributable release needs signing and a
-release build with bundled JS; it has not been generated or verified here. Do not
+Metro for the development JS bundle. For a standalone beta, run `gradlew.bat assembleRelease -PreactNativeArchitectures=arm64-v8a`. The generated Expo release configuration uses the development signing key; production distribution needs your own protected key. Do not
 commit signing keys. No paid EAS build is necessary for local builds.
 
 ## Validation

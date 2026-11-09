@@ -38,3 +38,30 @@ reconnection leases precede WebRTC integration. ICE uses configured STUN/TURN.
 Media encryption terminates wherever cloud AI processing occurs; this cannot be
 advertised as end-to-end encrypted through the AI provider. No production schema
 or signaling service is claimed in this version.
+
+## Native beta implementation (supersedes planned boundaries above)
+
+Expo Speech Recognition adapts Android SpeechRecognizer and performs speech endpointing;
+Expo Speech uses installed TTS voices. Foreground listening is half-duplex: recognition
+stops for translation/playback and restarts afterwards. No recording files are retained.
+`LinguaAudioModule` handles communication-device enumeration/selection, focus,
+route-change callbacks and app-owned capture-session NoiseSuppressor/AcousticEchoCanceler.
+Effects are attached only to non-redacted recording session IDs; actual enabled state
+is emitted separately from support. Android-controlled speech capture remains a limitation.
+
+`Accounts` stores salted scrypt passwords and hashed seven-day bearer tokens in local
+SQLite. Registration requires a beta enrollment secret; login is rate-limited. Delete
+revokes tokens and sessions. This is a single-instance beta; PostgreSQL migration,
+password recovery and production identity controls are not implemented.
+
+`Sessions` issues 72-bit single-use invite codes and 256-bit scoped member capabilities.
+WebSocket clients authenticate in their first message within five seconds. Two users
+maximum, bounded message schemas, rate limits, heartbeats, one-hour expiry and 30-second
+reconnect grace constrain session lifetime. Captions are relayed, never persisted.
+Only the designated initiator creates WebRTC offers. ICE configuration comes from the
+operator. WebRTC requests audio processing and encrypts media; cloud translation and
+OS speech services are separate trust boundaries.
+
+Translated voice turns detach/stop the WebRTC sender track, let the speech service
+capture, and replace the sender track when returning to the call. Incoming translated
+speech pauses recognition to limit feedback. Physical-device testing is still required.

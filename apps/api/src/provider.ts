@@ -107,17 +107,15 @@ export class LibreTranslateProvider implements TranslationProvider {
         provider: this.name,
         elapsedMs: performance.now() - started,
       };
-    const result = z
-      .object({ translatedText: z.string().min(1) })
-      .parse(
-        await this.request("translate", signal, {
-          q: input.text,
-          source,
-          target: input.target,
-          format: "text",
-          api_key: this.apiKey,
-        }),
-      );
+    const result = z.object({ translatedText: z.string().min(1) }).parse(
+      await this.request("translate", signal, {
+        q: input.text,
+        source,
+        target: input.target,
+        format: "text",
+        api_key: this.apiKey,
+      }),
+    );
     return {
       text: result.translatedText,
       source,

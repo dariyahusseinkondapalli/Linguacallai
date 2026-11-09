@@ -36,6 +36,10 @@ import {
   type Capability,
 } from "@linguacall/shared";
 import { colors as c } from "./theme";
+import { VoicePanel } from "./VoicePanel";
+import { CallPanel } from "./CallPanel";
+import { AccountPanel } from "./AccountPanel";
+import { AudioPanel } from "./AudioPanel";
 
 type Routes = {
   Home: undefined;
@@ -210,8 +214,8 @@ function Home() {
         <Ionicons name="headset-outline" size={28} color={c.violet} />
         <Text style={s.heading}>Built toward hands-free conversation</Text>
         <Text style={s.body}>
-          Nearby listening, Bluetooth route control and translated calls are not
-          available in this build. Audio device status has not been verified.
+          Start nearby listening in Translate, or create a two-person session in
+          Calls. Check connected audio devices in Settings.
         </Text>
         <Button
           secondary
@@ -307,8 +311,30 @@ function Translate() {
   return (
     <Page
       title="Say it your way."
-      subtitle="Text translation · voice listening is not yet available"
+      subtitle="Text translation and nearby live listening"
     >
+      <VoicePanel
+        endpoint={prefs.endpoint}
+        token={token}
+        source={source}
+        target={target}
+        onResult={(original, result) =>
+          setEntries(
+            saveEntry(
+              latest.current.entries,
+              {
+                id: String(Date.now()),
+                original,
+                result: result.text,
+                source: result.source,
+                target,
+                createdAt: new Date().toISOString(),
+              },
+              latest.current.prefs.history,
+            ),
+          )
+        }
+      />
       <Card>
         <Text style={s.label}>FROM</Text>
         <LanguagePicker
@@ -401,31 +427,17 @@ function Translate() {
   );
 }
 function Calls() {
+  const { prefs, token } = useApp();
   return (
     <Page
-      title={"Across the room.\nAcross the world."}
-      subtitle="Two people. Their own languages."
+      title="Connect every voice."
+      subtitle="Paired translation and internet voice calls"
     >
-      <Card>
-        <Ionicons name="people-outline" size={36} color={c.blue} />
-        <Text style={s.heading}>Paired translation</Text>
-        <Text style={s.body}>
-          Secure invite links, QR pairing and two-way translation are planned.
-          Pairing is unavailable in this build.
-        </Text>
-      </Card>
-      <Card>
-        <Ionicons name="call-outline" size={36} color={c.violet} />
-        <Text style={s.heading}>Remote AI calls</Text>
-        <Text style={s.body}>
-          WebRTC calling requires account authentication, signaling and tested
-          audio routing. Calling is unavailable in this build.
-        </Text>
-        <Text style={s.small}>
-          LinguaCall will support its own internet calls. Ordinary cellular and
-          third-party app calls are not supported.
-        </Text>
-      </Card>
+      <CallPanel
+        endpoint={prefs.endpoint}
+        token={token}
+        language={prefs.language}
+      />
     </Page>
   );
 }
@@ -545,6 +557,12 @@ function Settings() {
       title="Make it yours."
       subtitle="Language, privacy and connection preferences."
     >
+      <AccountPanel
+        endpoint={prefs.endpoint}
+        token={token}
+        onToken={setToken}
+      />
+      <AudioPanel />
       <Card>
         <Text style={s.heading}>Preferred language</Text>
         <LanguagePicker
@@ -617,10 +635,9 @@ function Settings() {
       <Card>
         <Text style={s.heading}>Audio & account availability</Text>
         <Text style={s.body}>
-          Microphone capture, Bluetooth route selection, ENC and echo
-          cancellation are not implemented. No microphone is active. Account
-          registration is not available; the development API token is not a user
-          account.
+          Speech recognition uses your installed speech service. Audio effects
+          and language coverage vary by device. Create a beta account for paired
+          sessions and internet calls.
         </Text>
       </Card>
     </Page>
@@ -736,8 +753,9 @@ export default function App() {
                 <Text style={s.heading}>You decide what stays.</Text>
                 <Text style={s.body}>
                   History is off by default. Text goes to your configured
-                  provider only when you translate. This early build does not
-                  listen to or record audio.
+                  provider only when you translate. Listening starts only when
+                  you tap Start listening. The speech service may process audio
+                  in the cloud; no audio files are saved.
                 </Text>
               </Card>
               <Button

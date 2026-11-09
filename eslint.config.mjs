@@ -12,6 +12,7 @@ export default ts.config(
   },
   js.configs.recommended,
   ...ts.configs.recommended,
+  { files: ["**/*.cjs"], rules: { "@typescript-eslint/no-require-imports": "off" } },
   {
     files: ["**/*.{ts,tsx}"],
     rules: { "@typescript-eslint/no-explicit-any": "error" },

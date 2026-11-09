@@ -23,7 +23,9 @@ async function main() {
       .filter({ hasText: "Connect your development API" })
       .waitFor();
     await page.getByRole("tab", { name: "Calls" }).click();
-    await page.getByText("Paired translation", { exact: true }).waitFor();
+    await page
+      .getByRole("button", { name: "Create paired translation session" })
+      .waitFor();
     await page.getByRole("tab", { name: "History" }).click();
     await page.getByText("Private by default", { exact: true }).waitFor();
     await page.getByRole("tab", { name: "Settings" }).click();
