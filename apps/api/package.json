@@ -1,0 +1,26 @@
+{
+  "name": "@linguacall/api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx --env-file-if-exists=.env src/index.ts",
+    "typecheck": "tsc -p tsconfig.json",
+    "build": "esbuild src/index.ts --bundle --platform=node --format=cjs --outfile=dist/index.cjs",
+    "start": "node --env-file-if-exists=.env dist/index.cjs"
+  },
+  "dependencies": {
+    "@linguacall/shared": "*",
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.1.0",
+    "helmet": "^8.1.0",
+    "ws": "^8.22.2",
+    "zod": "^3.25.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^24.0.0",
+    "@types/ws": "^8.18.2",
+    "tsx": "^4.20.0"
+  }
+}

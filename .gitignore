@@ -1,0 +1,17 @@
+node_modules/
+.expo/
+dist/
+.env
+.env.*
+!.env.example
+coverage/
+*.log
+*.apk
+*.jks
+apps/mobile/android/
+apps/mobile/ios/
+data/
+*.sqlite*
+**/build/
+**/.gradle/
+**/.cxx/

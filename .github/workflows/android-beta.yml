@@ -1,0 +1,30 @@
+name: Build Android beta
+on:
+  workflow_dispatch:
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - uses: android-actions/setup-android@v3
+      - run: npm ci
+      - run: npm run typecheck && npm run lint && npm test
+      - run: npx expo prebuild --platform android --no-install
+        working-directory: apps/mobile
+        env:
+          EXPO_NO_TELEMETRY: 1
+      - run: ./gradlew assembleRelease -PreactNativeArchitectures=arm64-v8a --max-workers=2
+        working-directory: apps/mobile/android
+      - uses: actions/upload-artifact@v4
+        with:
+          name: LinguaCall-AI-arm64-beta
+          path: apps/mobile/android/app/build/outputs/apk/release/app-release.apk
+          retention-days: 14
