@@ -50,3 +50,14 @@ builds; web export and Chromium phone/tablet interaction smoke pass. Account/ses
 tests use local sockets and SQLite; no media/device testing is implied. Android SDK,
 NDK, CMake and JDK 17 were installed locally for APK build validation. Final APK build
 result is recorded separately below when available.
+
+## Final APK result — 2026-11-09
+
+`assembleRelease -PreactNativeArchitectures=arm64-v8a` passed, including Android
+release lint. APK v2 signature verification passed. Package inspection verified
+ARM64-only native libraries, bundled JavaScript, package com.linguacall.ai, version
+0.2.0, min SDK 24 / target SDK 36, and removal of unused camera/storage/overlay/
+biometric permissions. Development signing is intentional for this beta.
+See APK_BUILD.json for the exact source commit, byte size and SHA-256.
+No device installation, microphone, Bluetooth, real-provider accuracy or two-device
+WebRTC media test was performed. The build is provided for the user's device testing.
