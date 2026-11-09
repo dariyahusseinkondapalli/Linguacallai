@@ -1,0 +1,1 @@
+740d7e2cd63be507b1cce37785f532d5d2ecba39dac1908ba17756793d4c9bc5  LinguaCall-AI-0.2.0-arm64.apk

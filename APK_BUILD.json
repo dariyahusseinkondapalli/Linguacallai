@@ -1,0 +1,13 @@
+{
+  "source_commit": "b62ee8401349126bdbe4f3bcd233f89f22a5d298",
+  "bytes": 51983301,
+  "sha256": "740d7e2cd63be507b1cce37785f532d5d2ecba39dac1908ba17756793d4c9bc5",
+  "abis": [
+    "arm64-v8a"
+  ],
+  "bundled_js": true,
+  "unused_permissions_removed": true,
+  "release_build": "passed",
+  "signature": "v2 verified, development certificate",
+  "device_test": "not performed"
+}
